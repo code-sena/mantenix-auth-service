@@ -1,0 +1,18 @@
+# Local database for auth-service (ADR-004: one database per service).
+# Start:  docker compose up -d
+# Stop:   docker compose down
+services:
+  auth-db:
+    image: postgres:17
+    container_name: mantenix-auth-db
+    environment:
+      POSTGRES_DB: mantenix_auth
+      POSTGRES_USER: mantenix
+      POSTGRES_PASSWORD: mantenix
+    ports:
+      - "5431:5432"
+    volumes:
+      - auth-data:/var/lib/postgresql/data
+
+volumes:
+  auth-data:
